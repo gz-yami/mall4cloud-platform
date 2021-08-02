@@ -1,8 +1,8 @@
 # README
 
-#### ![image-20210705143529597](doc/img/readme/image-20210705143529597.png)
+![image-20210705143529597](doc/img/readme/image-20210705143529597.png)
 
-### 前言
+## 前言
 
 本商城是基于Spring Cloud、Nacos、Seata、Mysql、Redis、RocketMQ、canal、ElasticSearch、minio的微服务B2B2C电商商城系统，采用主流的互联网技术架构、全新的UI设计、支持集群部署、服务注册和发现以及拥有完整的订单流程等，代码完全开源，没有任何二次封装，是一个非常适合二次开发的电商平台系统。
 
@@ -10,7 +10,7 @@
 
 
 
-### 授权
+## 授权
 
 除开源版本外，本商城还提供商业版本的商城，欲知详情，请访问官网。
 
@@ -20,7 +20,7 @@
 
 
 
-### 项目链接
+## 项目链接
 
 JAVA后台：https://gitee.com/gz-yami/mall4cloud
 
@@ -32,7 +32,7 @@ uni-app：https://gitee.com/gz-yami/mall4cloud-uniapp
 
 
 
-### 技术介绍
+## 技术介绍
 
 后台基础框架采用使用mit开源协议的 `vue-element-admin`
 
@@ -40,17 +40,43 @@ uni-app：https://gitee.com/gz-yami/mall4cloud-uniapp
 
 https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/
 
+```
+├── build                      # 构建相关
+├── public                     # 静态资源
+│   │── favicon.ico            # favicon图标
+│   └── index.html             # html模板
+├── src                        # 源代码
+│   ├── api                    # 所有请求(根据不同后台不同的服务分包)
+│   ├── assets                 # 主题 字体等静态资源
+│   ├── components             # 全局公用组件
+│   ├── directive              # 全局指令
+│   ├── filters                # 全局 filter
+│   ├── icons                  # 项目所有 svg icons
+│   ├── lang                   # 国际化 language
+│   ├── layout                 # 全局 layout
+│   ├── router                 # 路由
+│   ├── store                  # 全局 store管理
+│   ├── styles                 # 全局样式
+│   ├── utils                  # 全局公用方法
+│   ├── views                  # views 所有页面
+│   ├── App.vue                # 入口页面
+│   ├── main.js                # 入口文件 加载组件 初始化等
+│   └── permission.js          # 权限管理
+├── tests                      # 测试
+├── .env.xxx                   # 环境变量配置
+├── .eslintrc.js               # eslint 配置项
+├── .babelrc                   # babel-loader 配置
+├── .travis.yml                # 自动化CI配置
+├── vue.config.js              # vue-cli 配置
+├── postcss.config.js          # postcss 配置
+└── package.json               # package.json
+```
 
 
-### 部署教程
 
-部署教程请参考该文件夹下的`/基本开发文档/mall4cloud开发环境搭建.md`以及`/开发环境搭建`目录下的中间件安装。
+## 运行相关截图
 
-
-
-### 运行相关截图
-
-#### 后台截图
+### 后台截图
 
 
 
