@@ -75,20 +75,19 @@ export default {
       }
     }
   },
-
   methods: {
     init(shopId) {
       console.log('账号管理shopId:', shopId)
       this.visible = true
-      this.pageQuery.shopId = shopId || null
+      // this.pageQuery.shopId = shopId || null
       this.dataForm.shopId = shopId || null
       this.$nextTick(() => {
         this.$refs['dataForm'].resetFields()
-        if (!this.pageQuery.shopId) {
+        if (!shopId) {
           console.log('this.dataForm：', this.dataForm)
           return
         }
-        api.getManageDetail(this.pageQuery).then(data => {
+        api.getManageDetail(shopId).then(data => {
           this.shopName = data.shopName
           this.username = data.username
         })
