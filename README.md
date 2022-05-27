@@ -86,15 +86,11 @@ https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/
 
 ## 提交反馈
 - Mall4j官网 https://www.mall4j.com
-- 商务合作微信
+- 如需购买商业版源码，请联系商务微信
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/131508_13858876_5094767.jpeg "法宝微信2.jpg")
+  ![输入图片说明](https://19838323.s21i.faiusr.com/4/4/ABUIABAEGAAgksmNlAYojomK2gIwrAI4rAI!160x160.png)
+
+- mall4j开源技术QQ群：561496886
 
 
-- mall4j开源技术QQ群：722835385
-
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0703/110919_835cf484_5094767.jpeg "mall4j群.jpg")
-
-## 你的点赞鼓励，是我们前进的动力~
-## 你的点赞鼓励，是我们前进的动力~
-## 你的点赞鼓励，是我们前进的动力~
+更多内容请查看 主项目 https://gitee.com/gz-yami/mall4cloud
