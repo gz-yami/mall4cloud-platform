@@ -1,142 +1,183 @@
+<!--
+ Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
+
+ https://www.mall4j.com/
+
+ 未经允许，不可做商业用途！
+
+ 版权所有，侵权必究！
+-->
 <template>
-  <div class="navbar">
-    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
-    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
-
-    <div class="right-menu">
-      <template v-if="device!=='mobile'">
-
-        <lang-select class="right-menu-item hover-effect" />
-
-      </template>
-
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
+  <div :class="['Mall4j',isDecorate?'navbar':'']">
+    <div class="navbar-content">
+      <!-- 1.左边部分 -->
+      <div class="left-menu">
+        <img
+          v-if="route.path!=='/supplier/shop-process' && webConfig.bsTopBarIcon && webConfig.bsTopBarIcon !== resourcesUrl"
+          style="height: 18px;width:59px;margin-right: 10px"
+          :src="webConfig.bsTopBarIcon"
+          alt=""
+          @error="webConfig.bsTopBarIcon=''"
+        >
+        <img
+          v-else
+          style="height: 18px;width:59px;margin-right: 10px"
+          :src="webConfig.bsTopBarIcon"
+          alt=""
+        >
+        <a
+          v-if="(webConfig.bsMenuTitleOpenCn || webConfig.bsMenuTitleCloseCn) || (webConfig.bsMenuTitleOpenEn || webConfig.bsMenuTitleCloseEn)"
+          class="site-navbar__brand-lg"
+          style="text-transform:none;"
+          href="javascript:;"
+        >{{ sidebar.opened ? webConfig.bsMenuTitleOpenCn : webConfig.bsMenuTitleCloseCn }}</a>
+        <a
+          v-else
+          class="site-navbar__brand-lg"
+          style="text-transform:none;"
+          href="javascript:;"
+        >{{ $t('version') + '  ' + $t('side') }}</a>
+        <div
+          v-if="route.path!=='/supplier/shop-process'"
+          class="shrink"
+        >
+          <svg-icon
+            icon-class="icon-zhedie"
+            @click="toggleSideBar"
+          />
         </div>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="logout">
-            <span style="display:block;">{{ $t('navbar.logOut') }}</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      </div>
+
+      <!-- 2.右边部分 -->
+      <div class="right-menu">
+        <el-dropdown
+          class="avatar-container"
+          trigger="hover"
+        >
+          <div class="avatar-wrapper">
+            <div class="user-name">
+              {{ name || userName }}
+            </div>
+          </div>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="logout">
+                <span style="display: block">{{ $t("navbar.logOut") }}</span>
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
     </div>
   </div>
 </template>
 
-<script>
-import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
-import LangSelect from '@/components/LangSelect'
+<script setup>
+import { ElMessageBox } from 'element-plus'
+// import UpdatePassword from '@/components/update-password/index.vue'
 
-export default {
-  components: {
-    Breadcrumb,
-    Hamburger,
-    LangSelect
-  },
-  computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar',
-      'device'
-    ])
-  },
-  methods: {
-    toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
-    },
-    async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
+const resourcesUrl = import.meta.env.VITE_APP_RESOURCES_URL
+const webConfigStore = useWebConfigStore()
+const webConfig = computed(() => webConfigStore.webConfig)
+
+const appStore = useAppStore()
+const sidebar = computed(() => appStore.sidebar)
+
+const userStore = useUserStore()
+const name = computed(() => userStore.name)
+const userName = computed(() => userStore.userName)
+
+const toggleSideBar = () => {
+  if (sessionStorage.getItem('cloudIsExpand') === '0' && !sidebar.value.opened) {
+    return
   }
+  appStore.toggleSideBar()
 }
+
+const route = useRoute()
+const router = useRouter()
+const logout = async () => {
+  ElMessageBox.confirm('确认退出登录？', $t('table.tips'), {
+    confirmButtonText: $t('table.confirm'),
+    cancelButtonText: $t('table.cancel'),
+    type: 'warning'
+  }).then(async () => {
+    await userStore.logout()
+    localStorage.setItem('cloudPlatChatWs', Date.now()) // 通知新窗口关闭ws
+    await router.push(`/login?redirect=${route.fullPath}`)
+  })
+}
+
+const isDecorate = computed(() => {
+  return !(/^\/(platform-decorate\/decorate-select-decorate)/.test(router.currentRoute.value.path))
+})
 </script>
 
 <style lang="scss" scoped>
 .navbar {
+  top: 0;
+  z-index: 2000;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  min-width: 1260px;
+  width: 100%;
   height: 50px;
-  overflow: hidden;
-  position: relative;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  overflow: hidden;
+  border-bottom: 1px solid #EBEDF0;
+  box-sizing: border-box;
 
-  .hamburger-container {
-    line-height: 46px;
-    height: 100%;
-    float: left;
+  .navbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+
+    // 1.左边部分
+    .left-menu {
+      display: flex;
+      align-items: center;
+    }
+
+    // 2.右边部分
+    .right-menu {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      .avatar-container {
+        .avatar-wrapper {
+          outline: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .site-navbar__brand-lg {
+    margin: 0 auto;
+    word-break: break-all;
+    /* 按字符截断换行 支持IE和chrome，FF不支持*/
+    word-wrap: break-word;
+    /* 按英文单词整体截断换行  以上三个浏览器均支持 */
+    color: #333333;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .shrink {
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
-
-    &:hover {
-      background: rgba(0, 0, 0, .025)
-    }
+    margin-left: 23px;
+    font-size: 18px;
   }
 
-  .breadcrumb-container {
-    float: left;
+  .navbar-notice img {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    margin: 8px;
   }
 
-  .errLog-container {
-    display: inline-block;
-    vertical-align: top;
-  }
-
-  .right-menu {
-    float: right;
-    height: 100%;
-    line-height: 50px;
-
-    &:focus {
-      outline: none;
-    }
-
-    .right-menu-item {
-      display: inline-block;
-      padding: 0 8px;
-      height: 100%;
-      font-size: 18px;
-      color: #5a5e66;
-      vertical-align: text-bottom;
-
-      &.hover-effect {
-        cursor: pointer;
-        transition: background .3s;
-
-        &:hover {
-          background: rgba(0, 0, 0, .025)
-        }
-      }
-    }
-
-    .avatar-container {
-      margin-right: 30px;
-
-      .avatar-wrapper {
-        margin-top: 5px;
-        position: relative;
-
-        .user-avatar {
-          cursor: pointer;
-          width: 40px;
-          height: 40px;
-          border-radius: 10px;
-        }
-
-        .el-icon-caret-bottom {
-          cursor: pointer;
-          position: absolute;
-          right: -20px;
-          top: 25px;
-          font-size: 12px;
-        }
-      }
-    }
-  }
 }
 </style>

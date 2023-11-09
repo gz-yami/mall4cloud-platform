@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_rbac/role/page',
     method: 'get',
@@ -8,14 +8,14 @@ export function page(pageParam) {
   })
 }
 
-export function list() {
+export function list () {
   return request({
     url: '/mall4cloud_rbac/role/list',
     method: 'get'
   })
 }
 
-export function get(roleId) {
+export function get (roleId) {
   return request({
     url: '/mall4cloud_rbac/role',
     method: 'get',
@@ -25,7 +25,7 @@ export function get(roleId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_rbac/role',
     method: 'post',
@@ -33,7 +33,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_rbac/role',
     method: 'put',
@@ -41,7 +41,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(roleId) {
+export function deleteById (roleId) {
   return request({
     url: '/mall4cloud_rbac/role',
     method: 'delete',

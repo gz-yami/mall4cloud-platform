@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_multishop/admin/hot_search/page',
     method: 'get',
@@ -8,7 +8,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(hotSearchId) {
+export function get (hotSearchId) {
   return request({
     url: '/mall4cloud_multishop/admin/hot_search',
     method: 'get',
@@ -18,7 +18,7 @@ export function get(hotSearchId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_multishop/admin/hot_search',
     method: 'post',
@@ -26,7 +26,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_multishop/admin/hot_search',
     method: 'put',
@@ -34,7 +34,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(hotSearchId) {
+export function deleteById (hotSearchId) {
   return request({
     url: '/mall4cloud_multishop/admin/hot_search',
     method: 'delete',

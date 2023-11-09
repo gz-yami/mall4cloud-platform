@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 
-export function transportPage() {
+export function transportPage () {
   return request({
     url: 'mall4cloud_delivery/m/transport/list',
     method: 'get'
   })
 }
 
-export function transportGet(attrId) {
+export function transportGet (attrId) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'get',
@@ -17,7 +17,7 @@ export function transportGet(attrId) {
   })
 }
 
-export function transportSave(data) {
+export function transportSave (data) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'post',
@@ -25,7 +25,7 @@ export function transportSave(data) {
   })
 }
 
-export function transportUpdate(data) {
+export function transportUpdate (data) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'put',
@@ -33,7 +33,7 @@ export function transportUpdate(data) {
   })
 }
 
-export function deleteTransportById(attrId) {
+export function deleteTransportById (attrId) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'delete',

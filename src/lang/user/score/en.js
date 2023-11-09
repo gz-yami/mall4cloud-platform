@@ -9,5 +9,7 @@ export default {
   priceScale: 'price scale',
   marketPriceFee: 'market price fee',
   marketPriceScale: 'market price scale',
-  status: 'status'
+  status: 'status',
+  growthDescription: 'Member Benefits',
+  memberBenefitsPageDisplaySet: 'Member benefits page display settings'
 }

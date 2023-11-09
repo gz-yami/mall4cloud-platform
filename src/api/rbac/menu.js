@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_rbac/menu/page',
     method: 'get',
@@ -8,7 +8,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(menuId) {
+export function get (menuId) {
   return request({
     url: '/mall4cloud_rbac/menu',
     method: 'get',
@@ -18,7 +18,7 @@ export function get(menuId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_rbac/menu',
     method: 'post',
@@ -26,7 +26,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_rbac/menu',
     method: 'put',
@@ -34,7 +34,7 @@ export function update(data) {
   })
 }
 
-export function deleteByIdAndSysType(menuId, sysType) {
+export function deleteByIdAndSysType (menuId, sysType) {
   return request({
     url: '/mall4cloud_rbac/menu',
     method: 'delete',
@@ -44,7 +44,7 @@ export function deleteByIdAndSysType(menuId, sysType) {
   })
 }
 
-export function menuList(searchParam) {
+export function menuList (searchParam) {
   return request({
     url: '/mall4cloud_rbac/menu/route',
     method: 'get',
@@ -52,14 +52,14 @@ export function menuList(searchParam) {
   })
 }
 
-export function listWithPermissions() {
+export function listWithPermissions () {
   return request({
     url: '/mall4cloud_rbac/menu/list_with_permissions',
     method: 'get'
   })
 }
 
-export function listMenuIds() {
+export function listMenuIds () {
   return request({
     url: '/mall4cloud_rbac/menu/list_menu_ids',
     method: 'get'

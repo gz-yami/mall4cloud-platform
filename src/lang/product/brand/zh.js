@@ -5,5 +5,6 @@ export default {
   imgUrl: '品牌logo',
   firstLetter: '检索首字母',
   seq: '排序',
+  isTop: '置顶',
   status: '状态'
 }

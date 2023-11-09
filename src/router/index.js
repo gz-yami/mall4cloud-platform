@@ -1,31 +1,6 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 
-Vue.use(Router)
-
-/* Layout */
-import Layout from '@/layout'
-
-/**
- * Note: sub-menu only appear when route children.length >= 1
- * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
- *
- * hidden: true                   if set true, item will not show in the sidebar(default is false)
- * alwaysShow: true               if set true, will always show the root menu
- *                                if not set alwaysShow, when item has more than one children route,
- *                                it will becomes nested mode, otherwise not show the root menu
- * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
- * name:'router-name'             the name is used by <keep-alive> (must set!!!)
- * meta : {
-    roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
-    icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
-    noCache: true                if set true, the page will no be cached(default is false)
-    affix: true                  if set true, the tag will affix in the tags-view
-    breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
-    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
-  }
- */
+export const Layout = () => import('@/layout/index.vue')
 
 /**
  * constantRoutes
@@ -41,52 +16,53 @@ export const constantRoutes = [
     children: [
       {
         path: '/redirect/:path(.*)',
-        component: () => import('@/views/common/redirect/index')
+        component: () => import('@/views/common/redirect/index.vue')
       }
     ]
   },
   {
     path: '/login',
-    component: () => import('@/views/common/login/index'),
-    hidden: true
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/common/error-page/404'),
+    component: () => import('@/views/common/login/index.vue'),
     hidden: true
   },
   {
     path: '/401',
-    component: () => import('@/views/common/error-page/401'),
+    component: () => import('@/views/common/error-page/401.vue'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/common/error-page/404.vue'),
     hidden: true
   }
   // {
   //   path: '/',
   //   component: Layout,
-  //   redirect: '/discount',
+  //   redirect: '/dashboard',
   //   children: [
   //     {
-  //       path: 'discount',
-  //       component: () => import('@/views/discount/add-or-update'),
-  //       name: 'discount',
-  //       meta: { title: 'discount', icon: 'discount', affix: true }
+  //       path: 'dashboard',
+  //       component: () => import('@/views/common/dashboard/index.vue'),
+  //       name: 'Dashboard',
+  //       meta: { title: 'dashboard', icon: 'index', affix: true }
   //     }
   //   ]
   // }
 ]
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+const router = createRouter({
+  history: createWebHistory(),
+  isAddDynamicMenuRoutes: false,
+  // 刷新时，滚动条位置还原
+  scrollBehavior: () => ({ left: 0, top: 0 }),
   routes: constantRoutes
 })
 
-const router = createRouter()
-
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
-export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+/**
+ * 重置路由
+ */
+export async function resetRouter () {
+  router.options.isAddDynamicMenuRoutes = false
+  await router.replace({ path: '/login' })
 }
-
 export default router

@@ -2,36 +2,63 @@
   <div class="wscn-http404-container">
     <div class="wscn-http404">
       <div class="pic-404">
-        <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
-        <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
+        <img
+          class="pic-404__parent"
+          src="@/assets/404_images/404.png"
+          alt="404"
+        >
+        <img
+          class="pic-404__child left"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        >
+        <img
+          class="pic-404__child mid"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        >
+        <img
+          class="pic-404__child right"
+          src="@/assets/404_images/404_cloud.png"
+          alt="404"
+        >
       </div>
       <div class="bullshit">
-        <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__info">All rights reserved
-          <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
+        <div class="bullshit__oops">
+          出错了！
         </div>
-        <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
-        <a href="" class="bullshit__return-home">Back to home</a>
+        <div class="bullshit__headline">
+          页面走丢了！
+        </div>
+        <div class="bullshit__info">
+          请检查您输入的 URL 是否正确，或点击下面的按钮返回主页。
+        </div>
+        <el-button @click="onRouteTo(1)">
+          返回上一页
+        </el-button>
+        <el-button
+          type="primary"
+          @click="onRouteTo(0)"
+        >
+          返回首页
+        </el-button>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-
-export default {
-  name: 'Page404',
-  computed: {
-    message() {
-      return 'The webmaster said that you can not enter this page...'
-    }
+<script setup>
+const router = useRouter()
+const onRouteTo = (type) => {
+  if (type) {
+    router.go(-1)
+  } else {
+    router.push({
+      path: '/'
+    })
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .wscn-http404-container{
   transform: translate(-50%,-50%);
@@ -193,24 +220,6 @@ export default {
       animation-name: slideUp;
       animation-duration: 0.5s;
       animation-delay: 0.2s;
-      animation-fill-mode: forwards;
-    }
-    &__return-home {
-      display: block;
-      float: left;
-      width: 110px;
-      height: 36px;
-      background: #1482f0;
-      border-radius: 100px;
-      text-align: center;
-      color: #ffffff;
-      opacity: 0;
-      font-size: 14px;
-      line-height: 36px;
-      cursor: pointer;
-      animation-name: slideUp;
-      animation-duration: 0.5s;
-      animation-delay: 0.3s;
       animation-fill-mode: forwards;
     }
     @keyframes slideUp {

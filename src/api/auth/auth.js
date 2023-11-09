@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function login(data) {
+export function login (data) {
   return request({
     url: '/mall4cloud_auth/ua/login',
     method: 'post',
@@ -8,7 +8,7 @@ export function login(data) {
   })
 }
 
-export function logout() {
+export function logout () {
   return request({
     url: '/mall4cloud_auth/login_out',
     method: 'post'

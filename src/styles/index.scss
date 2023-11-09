@@ -1,9 +1,9 @@
-@import './variables.scss';
-@import './mixin.scss';
-@import './transition.scss';
-@import './element-ui.scss';
-@import './sidebar.scss';
-@import './btn.scss';
+@use 'mixin';
+@use 'transition';
+@use "sidebar";
+@use 'btn';
+@use "element-variables";
+
 
 body {
   height: 100%;
@@ -11,14 +11,11 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
-}
-
-label {
-  // font-weight: 600;
+  margin: 0;
 }
 
 html {
-  height: 100%;
+  background: #f9f9f9;
   box-sizing: border-box;
 }
 
@@ -33,7 +30,7 @@ html {
 }
 
 .no-padding {
-  padding: 0px !important;
+  padding: 0 !important;
 }
 
 .padding-content {
@@ -98,9 +95,9 @@ div:focus {
 
 aside {
   background: #eef1f6;
-  padding: 8px 24px;
+  // padding: 8px 24px;
   margin-bottom: 20px;
-  border-radius: 2px;
+  // border-radius: 2px;
   display: block;
   line-height: 32px;
   font-size: 16px;
@@ -127,10 +124,6 @@ aside {
 .components-container {
   margin: 30px 50px;
   position: relative;
-}
-
-.pagination-container {
-  margin-top: 30px;
 }
 
 .text-center {
@@ -171,25 +164,159 @@ aside {
   }
 }
 
-.filter-container {
-  padding-bottom: 10px;
-
-  .filter-item {
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 10px;
-    margin-right: 10px;
+// 调整插入body中的对话框样式
+.append-to-body-dialog {
+  .el-dialog__header {
+    border-bottom: 1px solid #EAEAEA;
+    margin: 0;
   }
-  .el-button {
-    margin-right: 0px;
+  .el-dialog__body {
+    padding: 20px;
   }
 }
 
-//refine vue-multiselect plugin
-.multiselect {
-  line-height: 16px;
+// 搜索栏
+.search-bar {
+  padding: 24px 20px 7px;
+  background-color: #f9f9f9;
+
+  .input-row {
+    display: block;
+    // 选择器(下拉框)  &  输入框 宽度
+    .el-form-item .el-form-item__content .el-select,
+    .el-form-item .el-form-item__content .el-input {
+      width: 200px;
+      white-space: nowrap;
+      display: -webkit-inline-flex;
+    }
+  }
+
+  // 独立一行的按钮
+  .btn-row {
+    display: block;
+  }
 }
 
-.multiselect--active {
-  z-index: 1000 !important;
+// 主要内容
+.main-content {
+  margin-top: 20px;
+
+  .operation-bar {
+    margin-bottom: 20px;
+
+    .inline-btn-row {
+      display: inline-block;
+    }
+  }
+
+  .table-con {
+    // 操作按钮容器
+    .table-btn-con {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    // 图片 + 文本
+    .table-cell-con {
+      display: flex;
+      align-items: center;
+
+      .table-cell-image {
+        margin-right: auto;
+        width: 60px;
+        height: 60px;
+
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .table-cell-text {
+        flex: 1;
+        margin-left: 10px;
+        text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        word-break: break-word;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-height: 20px;
+      }
+    }
+
+    // 纯图片
+    .table-cell-image {
+      display: flex;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      margin: auto;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    // 纯文本
+    .table-cell-text {
+      text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      word-break: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      line-height: 20px;
+    }
+  }
+}
+
+
+// el-table 表格表头样式
+.table-header {
+  background-color: #f7f8fa !important;
+  color: #000;
+  height: 60px;
+}
+
+// el-table 表格行样式
+.table-row {
+  height: 100px;
+}
+
+// el-table 表格行样式 - 单行文本展示
+.table-row-low {
+  height: 65px;
+}
+
+// el-table 表格单元格样式
+.table-cell {
+  padding: 0 !important;
+}
+
+// el-image图片出错样式
+.img-slot {
+  width: 100%;
+}
+
+
+.el-button:focus-visible {
+  outline: none !important;
+}
+
+
+.question {
+  vertical-align: text-top;
+}
+
+.el-message {
+  z-index: 9999 !important;
 }

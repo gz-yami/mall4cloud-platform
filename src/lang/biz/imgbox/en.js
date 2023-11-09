@@ -6,12 +6,12 @@ export default {
   uploadPic: 'Upload pictures',
   selectLocalPic: 'Please select a local image to upload:',
   confirmUpload: 'Confirm upload',
-  revisePicName: 'Modify picture name',
+  revisePicName: 'Modify picture name and grouping',
   oldName: 'Old name',
   revName: 'Edit name',
   inputNewName: 'Please enter a new picture name',
   superiorLimit: 'The number of selectable photos has reached the upper limit',
-  onlyPictures: 'Only images can be uploaded, other files have been cleared',
+  onlyPictures: 'Only support image format, size can not exceed 2m, other files have been cleared',
   onlySupported: 'Only supports',
   pic: 'picture',
   notExceed: 'Size cannot exceed',
@@ -22,5 +22,6 @@ export default {
   remainder: 'There are also options',
   maxSelect: 'At present, you can only select at most',
   requestError: 'The server is dozing off^_^',
-  PicMaxQuantity: 'The maximum number of pictures is:'
+  PicMaxQuantity: 'The maximum number of pictures is:',
+  groupEmpty: 'Group name cannot be empty'
 }

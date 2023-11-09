@@ -15,5 +15,8 @@ export default {
   breadcrumb: 'breadcrumb',
   affix: 'affix',
   activeMenu: 'active menu',
-  seq: 'seq'
+  seq: 'seq',
+  platformMenu: 'Platform side menu',
+  supplierMenu: 'Supplier Side Menu',
+  shopMenu: 'Merchant Side Menu'
 }

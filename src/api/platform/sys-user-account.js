@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function get(userId) {
+export function get (userId) {
   return request({
     url: '/mall4cloud_platform/sys_user/account',
     method: 'get',
@@ -10,7 +10,7 @@ export function get(userId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_platform/sys_user/account',
     method: 'post',
@@ -18,11 +18,10 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_platform/sys_user/account',
     method: 'put',
     data
   })
 }
-

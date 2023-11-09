@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_rbac/menu_permission/page',
     method: 'get',
@@ -8,7 +8,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(menuPermissionId) {
+export function get (menuPermissionId) {
   return request({
     url: '/mall4cloud_rbac/menu_permission',
     method: 'get',
@@ -18,7 +18,7 @@ export function get(menuPermissionId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_rbac/menu_permission',
     method: 'post',
@@ -26,7 +26,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_rbac/menu_permission',
     method: 'put',
@@ -34,7 +34,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(menuPermissionId) {
+export function deleteById (menuPermissionId) {
   return request({
     url: '/mall4cloud_rbac/menu_permission',
     method: 'delete',
@@ -44,7 +44,7 @@ export function deleteById(menuPermissionId) {
   })
 }
 
-export function menuPermissionsList() {
+export function menuPermissionsList () {
   return request({
     url: '/mall4cloud_rbac/menu_permission/list',
     method: 'get'

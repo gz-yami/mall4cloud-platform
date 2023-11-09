@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 // 获取平台所有的分类信息
-export function categoryPage(pageParam) {
+export function categoryPage (pageParam) {
   return request({
     url: '/mall4cloud_product/admin/category/platform_categories',
     method: 'get',
@@ -10,7 +10,7 @@ export function categoryPage(pageParam) {
 }
 
 // 获取店铺所有的分类信息
-export function shopCategoryPage(pageParam) {
+export function shopCategoryPage (pageParam) {
   return request({
     url: '/mall4cloud_product/admin/category/shop_categories',
     method: 'get',
@@ -19,7 +19,7 @@ export function shopCategoryPage(pageParam) {
 }
 
 // 获取店铺中的销售属性
-export function getShopAttrs() {
+export function getShopAttrs () {
   return request({
     url: '/mall4cloud_product/admin/attr/get_shop_attrs',
     method: 'get',
@@ -27,7 +27,7 @@ export function getShopAttrs() {
   })
 }
 
-export function get(categoryId) {
+export function get (categoryId) {
   return request({
     url: '/mall4cloud_product/admin/category',
     method: 'get',
@@ -37,7 +37,7 @@ export function get(categoryId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_product/admin/category',
     method: 'post',
@@ -45,7 +45,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_product/admin/category',
     method: 'put',
@@ -53,7 +53,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(categoryId) {
+export function deleteById (categoryId) {
   return request({
     url: '/mall4cloud_product/admin/category',
     method: 'delete',
@@ -63,7 +63,7 @@ export function deleteById(categoryId) {
   })
 }
 
-export function enableOrDisable(data) {
+export function enableOrDisable (data) {
   return request({
     url: '/mall4cloud_product/admin/category/category_enable_or_disable',
     method: 'put',

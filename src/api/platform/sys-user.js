@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 
-export function shopUserInfo() {
+export function shopUserInfo () {
   return request({
     url: '/mall4cloud_platform/sys_user/info',
     method: 'get'
   })
 }
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_platform/sys_user/page',
     method: 'get',
@@ -15,7 +15,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(sysUserId) {
+export function get (sysUserId) {
   return request({
     url: '/mall4cloud_platform/sys_user',
     method: 'get',
@@ -25,7 +25,7 @@ export function get(sysUserId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_platform/sys_user',
     method: 'post',
@@ -33,7 +33,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_platform/sys_user',
     method: 'put',
@@ -41,7 +41,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(sysUserId) {
+export function deleteById (sysUserId) {
   return request({
     url: '/mall4cloud_platform/sys_user',
     method: 'delete',

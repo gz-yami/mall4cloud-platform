@@ -1,44 +1,41 @@
-import Vue from 'vue'
-
-import Cookies from 'js-cookie'
-
-import 'normalize.css/normalize.css' // a modern alternative to CSS resets
-
-import Element from 'element-ui'
-import './styles/element-variables.scss'
-
-import '@/styles/index.scss' // global css
-
-import App from './App'
-import store from './store'
-import router from './router'
-
-import i18n from './lang' // internationalization
-import './icons' // icon
-import './permission' // permission control
+import { createApp } from 'vue'
+import { setupStore } from '@/stores'
+import App from './App.vue'
+import router from '@/router'
+// i18n
+import { setupI18n } from '@/lang'
+import 'virtual:svg-icons-register'
+import svgIcon from '@/icons/svg-icon.vue'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+// import 'default-passive-events'
+// 全局样式
+import '@/styles/index.scss'
+// 权限路由、菜单
+import '@/permission.js'
+// 自定义指令
+import { setupDirective } from '@/directive'
 import moment from 'moment'
 
-import * as filters from './filters' // global filters
+// element-plus 图标
+const app = createApp(App)
+for (const [key, component] of Object.entries(
+  ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 
-Vue.use(Element, {
-  size: Cookies.get('size') || 'medium', // set element-ui default size
-  i18n: (key, value) => i18n.t(key, value)
-})
+// i18n
+app.use(setupI18n)
+// router
+app.use(router)
+// 状态管理
+setupStore(app)
+// 注册指令(directive)
+setupDirective(app)
 
-// register global utility filters
-Object.keys(filters).forEach(key => {
-  Vue.filter(key, filters[key])
-})
+// svg
+app.component('SvgIcon', svgIcon)
 
-Vue.config.productionTip = false
-
-new Vue({
-  el: '#app',
-  router,
-  store,
-  i18n,
-  render: h => h(App)
-})
+app.mount('#app')
 
 // 自定义moment（js时间组件）
 moment.locale('zh-cn', {
