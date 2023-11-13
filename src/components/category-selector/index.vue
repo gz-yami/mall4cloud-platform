@@ -1,103 +1,102 @@
 <template>
-  <div class="component-category-selector">
-    <el-dialog
-      v-model="visible"
-      :title="$t('components.selector.categorySelector')"
-      :append-to-body="visible"
-      width="1000px"
-    >
-      <div class="prod-category clearfix">
-        <div class="category">
-          <!-- 分类 -->
-          <div class="category-box">
-            <el-input
-              v-model="firstCategorys.name"
-              :placeholder="$t('components.selector.chooseProdCateg')"
-              :disabled="true"
-            />
-            <ul class="category-list">
-              <li
-                v-for="(item, index) in firstCategorys.dataList"
-                :key="item.categoryId"
-                class="category-item"
-                :class="item.categoryId == firstCategorys.id ? 'active' : ''"
-                @click="selectFirstCategorys(item.categoryId, index)"
-              >
-                {{ item.name }}
-              </li>
-            </ul>
-          </div>
-          <!-- 分类 -->
-          <div
-            v-if="firstCategorys.id != 0"
-            class="category-box"
-          >
-            <el-input
-              v-model="secondCategorys.name"
-              :placeholder="$t('components.selector.chooseProdCateg')"
-              :disabled="true"
-            />
-            <ul class="category-list">
-              <li
-                v-for="(item, index) in secondCategorys.dataList"
-                :key="item.categoryId"
-                class="category-item"
-                :class="item.categoryId == secondCategorys.id ? 'active' : ''"
-                @click="selectSecondCategorys(item.categoryId, index)"
-              >
-                {{ item.name }}
-              </li>
-            </ul>
-          </div>
-          <!-- 分类 -->
-          <div
-            v-if="secondCategorys.id != 0"
-            class="category-box"
-          >
-            <el-input
-              v-model="threeCategorys.name"
-              :placeholder="$t('components.selector.chooseProdCateg')"
-              :disabled="true"
-            />
-            <ul class="category-list">
-              <li
-                v-for="(item, index) in threeCategorys.dataList"
-                :key="item.categoryId"
-                class="category-item"
-                :class="[isCreateCategory ? 'prohibit-sel' : item.categoryId == threeCategorys.id ? 'active' : '']"
-                @click="selectThreeCategorys(item.categoryId, index)"
-              >
-                {{ item.name }}
-              </li>
-            </ul>
-          </div>
+  <el-dialog
+    v-model="visible"
+    class="component-category-selector"
+    :title="$t('components.selector.categorySelector')"
+    :append-to-body="visible"
+    width="1000px"
+  >
+    <div class="prod-category clearfix">
+      <div class="category">
+        <!-- 分类 -->
+        <div class="category-box">
+          <el-input
+            v-model="firstCategorys.name"
+            :placeholder="$t('components.selector.chooseProdCateg')"
+            :disabled="true"
+          />
+          <ul class="category-list">
+            <li
+              v-for="(item, index) in firstCategorys.dataList"
+              :key="item.categoryId"
+              class="category-item"
+              :class="item.categoryId == firstCategorys.id ? 'active' : ''"
+              @click="selectFirstCategorys(item.categoryId, index)"
+            >
+              {{ item.name }}
+            </li>
+          </ul>
         </div>
-        <!-- 当前选择 -->
-        <div class="current-selected">
-          <span class="blod">{{ $t("components.selector.currCho") }}：</span>
-          <span class="select-item">{{ firstCategorys.name }}</span>
-          <span
-            v-if="secondCategorys.id"
-            class="select-item"
-          >&nbsp;>&nbsp;&nbsp;{{ secondCategorys.name }}</span>
-          <span
-            v-if="threeCategorys.id"
-            class="select-item"
-          >&nbsp;>&nbsp;&nbsp;{{ threeCategorys.name }}</span>
+        <!-- 分类 -->
+        <div
+          v-if="firstCategorys.id != 0"
+          class="category-box"
+        >
+          <el-input
+            v-model="secondCategorys.name"
+            :placeholder="$t('components.selector.chooseProdCateg')"
+            :disabled="true"
+          />
+          <ul class="category-list">
+            <li
+              v-for="(item, index) in secondCategorys.dataList"
+              :key="item.categoryId"
+              class="category-item"
+              :class="item.categoryId == secondCategorys.id ? 'active' : ''"
+              @click="selectSecondCategorys(item.categoryId, index)"
+            >
+              {{ item.name }}
+            </li>
+          </ul>
         </div>
-        <!-- 确认 -->
-        <div class="read-rule">
-          <div
-            class="read-rule-txt"
-            :class="(!isCreateCategory && threeCategorys.id != 0) || (isCreateCategory && firstCategorys.id != 0) ? 'todo' : ''"
-            @click="optionsConfirm"
-          >
-            {{ $t("components.selector.haveReadFol") }}
-          </div>
+        <!-- 分类 -->
+        <div
+          v-if="secondCategorys.id != 0"
+          class="category-box"
+        >
+          <el-input
+            v-model="threeCategorys.name"
+            :placeholder="$t('components.selector.chooseProdCateg')"
+            :disabled="true"
+          />
+          <ul class="category-list">
+            <li
+              v-for="(item, index) in threeCategorys.dataList"
+              :key="item.categoryId"
+              class="category-item"
+              :class="[isCreateCategory ? 'prohibit-sel' : item.categoryId == threeCategorys.id ? 'active' : '']"
+              @click="selectThreeCategorys(item.categoryId, index)"
+            >
+              {{ item.name }}
+            </li>
+          </ul>
         </div>
       </div>
-    </el-dialog>
-  </div>
+      <!-- 当前选择 -->
+      <div class="current-selected">
+        <span class="blod">{{ $t("components.selector.currCho") }}：</span>
+        <span class="select-item">{{ firstCategorys.name }}</span>
+        <span
+          v-if="secondCategorys.id"
+          class="select-item"
+        >&nbsp;>&nbsp;&nbsp;{{ secondCategorys.name }}</span>
+        <span
+          v-if="threeCategorys.id"
+          class="select-item"
+        >&nbsp;>&nbsp;&nbsp;{{ threeCategorys.name }}</span>
+      </div>
+      <!-- 确认 -->
+      <div class="read-rule">
+        <div
+          class="read-rule-txt"
+          :class="(!isCreateCategory && threeCategorys.id != 0) || (isCreateCategory && firstCategorys.id != 0) ? 'todo' : ''"
+          @click="optionsConfirm"
+        >
+          {{ $t("components.selector.haveReadFol") }}
+        </div>
+      </div>
+    </div>
+  </el-dialog>
 </template>
 
 <script setup>

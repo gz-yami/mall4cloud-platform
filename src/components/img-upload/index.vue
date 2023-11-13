@@ -7,14 +7,16 @@
         @click="elxImgboxHandle"
       >
         <img
-          v-if="value"
+          v-if="modelValue"
           :src="getImgSrc()"
           class="pic"
         >
-        <i
+        <el-icon
           v-else
           class="el-icon-plus pic-uploader-icon"
-        />
+        >
+          <Plus />
+        </el-icon>
       </div>
     </div>
     <!-- 弹窗, 新增图片 -->

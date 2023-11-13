@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    v-model:visible="visible"
+    v-model="visible"
     :title="$t('biz.imgbox.picManager')"
     class="component-imgbox"
     top="10vh"
@@ -40,7 +40,6 @@
           <el-form-item>
             <el-button
               type="primary"
-              icon="el-icon-search"
               @click="searchImg"
             >
               {{ $t("biz.imgbox.query") }}
