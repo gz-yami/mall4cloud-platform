@@ -75,6 +75,7 @@ const isDecorate = computed(() => {
   }
 
   .app-main {
+    padding: 20px;
     width: calc(100% - 40px);
     position: relative;
     background: #fff;

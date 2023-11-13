@@ -89,4 +89,58 @@ const deleteCategoryItemOfSelected = (index) => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.component-category-group {
+
+  .classify-show{
+    align-items: center;
+  }
+  .category {
+    display: flex;
+    align-items: top;
+    font-size: 13px;
+    .category-sel1 {
+      line-height: 1em;
+      padding: 3px 6px;
+      border: 1px solid #ddd;
+    }
+    .category-sel2 {
+      display: inline-block;
+      max-width: 450px;
+      p {
+        display: inline-block;
+        line-height: 1em;
+        padding: 4px;
+        border: 1px solid #ccc;
+        margin-right: 5px;
+        .del-cate {
+          display: inline-block;
+          text-align: center;
+          font-size: 13px;
+          width: 13px;
+          height: 13px;
+          line-height: 12px;
+          border: 1px solid #bbb;
+          border-radius: 50%;
+          color: #bbb;
+          margin-left: 6px;
+        }
+        .del-cate:hover {
+          cursor: pointer;
+          display: inline-block;
+          border-color: #666;
+          color: #666;
+        }
+      }
+    }
+    .change-category {
+      color: #0071db;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+    .change-category:hover {
+      color: #0258a8;
+    }
+  }
+}
+</style>
