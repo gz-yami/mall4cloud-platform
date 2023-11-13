@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 // 获取平台所有的分类信息
-export function categoryPage (pageParam) {
+export function categoryPage () {
   return request({
     url: '/mall4cloud_product/admin/category/platform_categories',
     method: 'get',
@@ -10,7 +10,7 @@ export function categoryPage (pageParam) {
 }
 
 // 获取店铺所有的分类信息
-export function shopCategoryPage (pageParam) {
+export function shopCategoryPage () {
   return request({
     url: '/mall4cloud_product/admin/category/shop_categories',
     method: 'get',

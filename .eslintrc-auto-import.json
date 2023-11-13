@@ -132,6 +132,8 @@
     "stores": true,
     "allinpay": true,
     "useAllinpayStore": true,
+    "ElMessageBox": true,
+    "ElMessage": true,
     "useTestStore": true
   }
 }

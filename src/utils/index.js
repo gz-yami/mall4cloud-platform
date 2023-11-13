@@ -458,8 +458,7 @@ export function getLevels (tree) {
  * 笛卡尔积运算
  * @param  {[type]} tree   [description]
  * @param  {Array}  stocks [description]
- * @param options
- * @return {{}}        [description]
+ * @return {[type]}        [description]
  */
 export function flatten (tree, stocks = [], options) {
   const { optionValue = 'id', optionText = 'text', extraData = {} } = options || {}

@@ -31,12 +31,6 @@
           style="text-transform:none;"
           href="javascript:;"
         >{{ sidebar.opened ? webConfig.bsMenuTitleOpenCn : webConfig.bsMenuTitleCloseCn }}</a>
-        <a
-          v-else
-          class="site-navbar__brand-lg"
-          style="text-transform:none;"
-          href="javascript:;"
-        >{{ $t('version') + '  ' + $t('side') }}</a>
         <div
           v-if="route.path!=='/supplier/shop-process'"
           class="shrink"
