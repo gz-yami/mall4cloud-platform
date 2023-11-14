@@ -170,6 +170,10 @@ aside {
   }
 }
 
+.el-form-item .el-form-item__content{
+  display: block;
+}
+
 // 搜索栏
 .search-bar {
   padding: 24px 20px 7px;
@@ -190,6 +194,10 @@ aside {
   .btn-row {
     display: block;
   }
+}
+
+.filter-container{
+  margin-bottom: 10px;
 }
 
 // 主要内容
