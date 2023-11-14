@@ -121,14 +121,16 @@
         <template #default="{row}">
           <el-button
             v-permission="['product:attr:update']"
-            type="text"
+            type="primary"
+            link
             @click="addOrUpdateHandle(row.attrId)"
           >
             {{ $t('table.edit') }}
           </el-button>
           <el-button
             v-permission="['product:attr:delete']"
-            type="text"
+            type="primary"
+            link
             @click="deleteHandle(row.attrId)"
           >
             {{ $t('table.delete') }}
