@@ -113,7 +113,8 @@
                   @blur="checkIntValue(idx)"
                 />
                 <el-button
-                  type="text"
+                  type="primary"
+                  link
                   class="txt-del-btn"
                   @click="deleteAttrCalue(idx)"
                 >

@@ -219,13 +219,15 @@
                 v-if="groupForm.name"
                 class="sel-group-name"
               >{{ groupForm.name }}</span><el-button
-                type="text"
+                type="primary"
+                link
                 @click="selectOrCreateGroup(0)"
               >
                 选择分组
               </el-button>
               <el-button
-                type="text"
+                type="primary"
+                link
                 @click="selectOrCreateGroup(1)"
               >
                 新建分组

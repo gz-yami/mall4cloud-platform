@@ -127,14 +127,16 @@
         <template #default="{row}">
           <el-button
             v-permission="['product:brand:update']"
-            type="text"
+            type="primary"
+            link
             @click="addOrUpdateHandle(row.brandId)"
           >
             {{ $t('table.edit') }}
           </el-button>
           <el-button
             v-if="row.status === 0"
-            type="text"
+            type="primary"
+            link
             @click="enableOrDisable(row.brandId,row.status)"
           >
             <!-- 上架 -->
@@ -142,7 +144,8 @@
           </el-button>
           <el-button
             v-if="row.status === 1"
-            type="text"
+            type="primary"
+            link
             @click="enableOrDisable(row.brandId,row.status)"
           >
             <!-- 下架 -->
@@ -150,7 +153,8 @@
           </el-button>
           <el-button
             v-permission="['product:brand:delete']"
-            type="text"
+            type="primary"
+            link
             @click="deleteHandle(row.brandId)"
           >
             {{ $t('table.delete') }}

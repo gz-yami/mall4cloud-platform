@@ -139,16 +139,16 @@
         <template #default="{row}">
           <el-button
             v-permission="['multishop:indexImg:update']"
-            type="text"
-            class="el-icon-view"
+            type="primary"
+            link
             @click="addOrUpdateHandle(row.shopId)"
           >
             查看
           </el-button>
           <el-button
             v-permission="['multishop:indexImg:update']"
-            type="text"
-            class="el-icon-setting"
+            type="primary"
+            link
             @click="accountManageHandle(row.shopId)"
           >
             账号管理

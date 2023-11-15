@@ -97,7 +97,8 @@
             <div class="card-prod-bottom">
               <span class="card-prod-name">{{ prods.name }}</span>
               <el-button
-                type="text"
+                type="primary"
+                link
                 class="card-prod-name-button"
                 @click="dataForm.spuId = null"
               >

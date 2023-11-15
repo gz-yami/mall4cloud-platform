@@ -24,7 +24,8 @@
           v-model="loginForm.username"
           :placeholder="$t('login.username')"
           name="username"
-          type="text"
+          type="primary"
+          link
           tabindex="1"
           autocomplete="on"
         />
