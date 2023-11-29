@@ -198,6 +198,7 @@
             </div>
             <el-upload
               ref="uploadRef"
+              v-model:file-list="fileList"
               class="upload-img-preview"
               list-type="picture-card"
               accept="image/*"
@@ -363,6 +364,7 @@ import { save, page as pageApi, updateFileName, deleteFile } from '@/api/biz/att
 const emit = defineEmits(['refreshPic'])
 
 const Data = reactive({
+  fileList: [],
   images: [], // 已选图片
   dataForm: {
     policy: '',
@@ -424,7 +426,7 @@ const Data = reactive({
   }
 })
 
-const { images, dataForm, groupList, resourcesUrl, showGroupVisible, selectGroup, createGroup, groupForm, options, newImgName, imageObject, changeNameVisible, type, fileName, isLoading, visible, disabled, imgRes, page } = toRefs(Data)
+const { fileList, images, dataForm, groupList, resourcesUrl, showGroupVisible, selectGroup, createGroup, groupForm, options, newImgName, imageObject, changeNameVisible, type, fileName, isLoading, visible, disabled, imgRes, page } = toRefs(Data)
 
 const uploadRef = ref()
 /**
@@ -443,9 +445,7 @@ const init = (type, limit) => {
     Data.type = false
     Data.limit = limit
   }
-  if (uploadRef.value) {
-    uploadRef.value.uploadFiles = []
-  }
+  Data.fileList = []
   // 获取产品数据 - 第一页的数据
   Data.page.current = 1
   loadImageGroup() // 分组
@@ -682,6 +682,7 @@ const delectImg = (fileId) => {
 const uploadFileBtn = () => {
   Data.options.activeTab = 'upload'
   Data.dataForm.attachFileGroupId = null
+  Data.fileList = []
 }
 
 const { proxy } = getCurrentInstance()
@@ -760,7 +761,8 @@ const onPageNumChange = (page) => {
  * 获取上传图片数据
  */
 const onUploadConfirm = () => {
-  const fileNum = uploadRef.value.uploadFiles.length
+  const fileNum = Data.fileList.length
+
   ossInfo(fileNum).then(response => {
     if (Data.resourcesActionType === '0') {
       Data.dataForm.policy = response.policy
@@ -871,7 +873,7 @@ const uploadTips = () => {
     tips.push($t('biz.imgbox.alreadyExist') + Data.images.length + $t('biz.imgbox.unit'))
   }
 
-  const uploadFileNum = uploadRef.value ? uploadRef.value.uploadFiles.length : 0
+  const uploadFileNum = Data.fileList ? Data.fileList.length : 0
   if (uploadFileNum > 0) {
     tips.push($t('biz.imgbox.soonUpload') + uploadFileNum + $t('biz.imgbox.unit'))
   }
@@ -918,7 +920,7 @@ const onUploadSuccess = (response, file, fileList) => {
     loadListImage()
   })
   Data.disabled = true
-  uploadRef.value.uploadFiles = []
+  Data.fileList = []
   Data.page.current = 1
 }
 
