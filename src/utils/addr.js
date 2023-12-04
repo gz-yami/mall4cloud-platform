@@ -2,12 +2,12 @@
  * 通过地址id获取省市区的地址名
  * @param {*} s
  */
-export function areaNameList(areaData, cityList) {
+export function areaNameList (areaData, cityList) {
   // 插入数据
   cityList.forEach(element => {
-    var city = element
+    const city = element
     // 省
-    for (var i = 0; i < areaData.length; i++) {
+    for (let i = 0; i < areaData.length; i++) {
       // 市
       const cityIndex = areaData[i].areaIds.indexOf(city.parentId)
       if (cityIndex > -1) {
@@ -20,24 +20,24 @@ export function areaNameList(areaData, cityList) {
     }
   })
   // 获取区域名
-  var addrNameList = []
+  let addrNameList = []
   // 城市名
-  var cityNameList = []
+  let cityNameList = []
   // 地区名
-  var areaNameList = []
+  let areaNameList = []
   areaData.forEach(province => {
-    var cityList = []
-    var cityAll = true
+    const cityList = []
+    let cityAll = true
     // 市
     province.areas.forEach(city => {
-      var areaList = []
-      var areaAll = true
+      const areaList = []
+      let areaAll = true
       // 区
       city.areas.forEach(area => {
         if (area.check) {
           areaList.push(area.areaName)
         } else if (!areaAll) {
-          console.log(1)
+          // console.log(1)
         } else {
           areaAll = false
           cityAll = false

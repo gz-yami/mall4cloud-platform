@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_delivery/m/transport/page',
     method: 'get',
@@ -8,7 +8,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(transportId) {
+export function get (transportId) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'get',
@@ -18,7 +18,7 @@ export function get(transportId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'post',
@@ -26,7 +26,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'put',
@@ -34,7 +34,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(transportId) {
+export function deleteById (transportId) {
   return request({
     url: '/mall4cloud_delivery/m/transport',
     method: 'delete',
@@ -44,7 +44,7 @@ export function deleteById(transportId) {
   })
 }
 
-export function listArea() {
+export function listArea () {
   return request({
     url: '/mall4cloud_delivery/m/area/list',
     method: 'get',
@@ -52,7 +52,7 @@ export function listArea() {
   })
 }
 
-export function listAreaInfo() {
+export function listAreaInfo () {
   return request({
     url: '/mall4cloud_delivery/m/area/areaListInfo',
     method: 'get',

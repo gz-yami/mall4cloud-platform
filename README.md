@@ -32,33 +32,44 @@ uni-app：https://gitee.com/gz-yami/mall4cloud-uniapp
 
 ## 部署教程
 
-### 1.启动
+### 1.安装nodejs
 
-- 安装node模块 （不要用cnpm，否则会出现不可预知的后果）
+[NodeJS](https://nodejs.org/) 项目要求最低 18.12.0，推荐 20.9.0
+
+如果不了解怎么安装nodejs的，可以参考 [菜鸟教程的nodejs相关](https://www.runoob.com/nodejs/nodejs-install-setup.html)
+
+### 2.启动
+
+- 项目要求使用 [pnpm](https://www.pnpm.cn/) 包管理工具
+- 使用编辑器打开项目，在根目录执行以下命令安装依赖
 
 ```
-npm install
+pnpm install
 ```
 
 - 运行
 
 ```
-npm run dev
+pnpm run dev
 ```
 
 - 部署
 
 ```
-npm run build:prod
+pnpm run build
 ```
 
-## 技术介绍
+- 如果不想使用 pnpm，请删除 `package.json` 文件中 `preinstall` 脚本后再进行安装
 
-后台基础框架采用使用mit开源协议的 `vue-element-admin`
+```json
+{
+    "scripts" : {
+        "preinstall": "npx only-allow pnpm"  // 使用其他包管理工具（npm、yarn、cnpm等）请删除此命令
+    }
+}
+```
 
-具体可以查看 [vue-element-admin 介绍](https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/)
-
-https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/
+## 目录结构
 
 ```
 ├── build                      # 构建相关
@@ -100,9 +111,9 @@ https://panjiachen.gitee.io/vue-element-admin-site/zh/guide/
 
 
 
-![image-20210705152010036](doc/img/readme/image-20210705152010036.png)
+![](doc/img/readme/image-20231130110522682.png)
 
-![image-20210705152109738](doc/img/readme/image-20210705152109738.png)
+![](doc/img/readme/image-20231130110607548.png)
 
 ## 提交反馈
 - Mall4j官网 https://www.mall4j.com

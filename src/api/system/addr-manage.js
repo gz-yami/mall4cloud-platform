@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 
-export function page() {
+export function page () {
   return request({
     url: '/mall4cloud_delivery/m/area/list',
     method: 'get'
   })
 }
 
-export function get(areaId) {
+export function get (areaId) {
   return request({
     url: '/mall4cloud_delivery/m/area',
     method: 'get',
@@ -17,7 +17,7 @@ export function get(areaId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_delivery/m/area',
     method: 'post',
@@ -25,7 +25,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_delivery/m/area',
     method: 'put',
@@ -33,7 +33,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(areaId) {
+export function deleteById (areaId) {
   return request({
     url: '/mall4cloud_delivery/m/area',
     method: 'delete',

@@ -1,14 +1,23 @@
+/*
+* Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
+*
+* https://www.mall4j.com/
+*
+* 未经允许，不可做商业用途！
+*
+* 版权所有，侵权必究！
+*/
 /**
  * Created by PanJiaChen on 16/11/18.
  */
-
+import Big from 'big.js'
 /**
  * Parse the time to string
  * @param {(Object|string|number)} time
  * @param {string} cFormat
  * @returns {string | null}
  */
-export function parseTime(time, cFormat) {
+export function parseTime (time, cFormat) {
   if (arguments.length === 0 || !time) {
     return null
   }
@@ -24,7 +33,7 @@ export function parseTime(time, cFormat) {
       } else {
         // support safari
         // https://stackoverflow.com/questions/4310953/invalid-date-in-safari
-        time = time.replace(new RegExp(/-/gm), '/')
+        time = time.replace(/-/gm, '/')
       }
     }
 
@@ -42,13 +51,15 @@ export function parseTime(time, cFormat) {
     s: date.getSeconds(),
     a: date.getDay()
   }
-  const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
+  // eslint-disable-next-line no-unused-vars
+  return format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
     return value.toString().padStart(2, '0')
   })
-  return time_str
 }
 
 /**
@@ -56,7 +67,7 @@ export function parseTime(time, cFormat) {
  * @param {string} option
  * @returns {string}
  */
-export function formatTime(time, option) {
+export function formatTime (time, option) {
   if (('' + time).length === 10) {
     time = parseInt(time) * 1000
   } else {
@@ -98,7 +109,7 @@ export function formatTime(time, option) {
  * @param {string} url
  * @returns {Object}
  */
-export function getQueryObject(url) {
+export function getQueryObject (url) {
   url = url == null ? window.location.href : url
   const search = url.substring(url.lastIndexOf('?') + 1)
   const obj = {}
@@ -114,13 +125,13 @@ export function getQueryObject(url) {
 }
 
 /**
- * @param {string} input value
+ * @param {string} str value
  * @returns {number} output value
  */
-export function byteLength(str) {
+export function byteLength (str) {
   // returns the byte length of an utf8 string
   let s = str.length
-  for (var i = str.length - 1; i >= 0; i--) {
+  for (let i = str.length - 1; i >= 0; i--) {
     const code = str.charCodeAt(i)
     if (code > 0x7f && code <= 0x7ff) s++
     else if (code > 0x7ff && code <= 0xffff) s += 2
@@ -133,7 +144,7 @@ export function byteLength(str) {
  * @param {Array} actual
  * @returns {Array}
  */
-export function cleanArray(actual) {
+export function cleanArray (actual) {
   const newArray = []
   for (let i = 0; i < actual.length; i++) {
     if (actual[i]) {
@@ -147,7 +158,7 @@ export function cleanArray(actual) {
  * @param {Object} json
  * @returns {Array}
  */
-export function param(json) {
+export function param (json) {
   if (!json) return ''
   return cleanArray(
     Object.keys(json).map(key => {
@@ -161,7 +172,7 @@ export function param(json) {
  * @param {string} url
  * @returns {Object}
  */
-export function param2Obj(url) {
+export function param2Obj (url) {
   const search = decodeURIComponent(url.split('?')[1]).replace(/\+/g, ' ')
   if (!search) {
     return {}
@@ -172,8 +183,7 @@ export function param2Obj(url) {
     const index = v.indexOf('=')
     if (index !== -1) {
       const name = v.substring(0, index)
-      const val = v.substring(index + 1, v.length)
-      obj[name] = val
+      obj[name] = v.substring(index + 1, v.length)
     }
   })
   return obj
@@ -183,7 +193,7 @@ export function param2Obj(url) {
  * @param {string} val
  * @returns {string}
  */
-export function html2Text(val) {
+export function html2Text (val) {
   const div = document.createElement('div')
   div.innerHTML = val
   return div.textContent || div.innerText
@@ -195,7 +205,7 @@ export function html2Text(val) {
  * @param {(Object|Array)} source
  * @returns {Object}
  */
-export function objectMerge(target, source) {
+export function objectMerge (target, source) {
   if (typeof target !== 'object') {
     target = {}
   }
@@ -217,7 +227,7 @@ export function objectMerge(target, source) {
  * @param {HTMLElement} element
  * @param {string} className
  */
-export function toggleClass(element, className) {
+export function toggleClass (element, className) {
   if (!element || !className) {
     return
   }
@@ -237,7 +247,7 @@ export function toggleClass(element, className) {
  * @param {string} type
  * @returns {Date}
  */
-export function getTime(type) {
+export function getTime (type) {
   if (type === 'start') {
     return new Date().getTime() - 3600 * 1000 * 24 * 90
   } else {
@@ -251,10 +261,10 @@ export function getTime(type) {
  * @param {boolean} immediate
  * @return {*}
  */
-export function debounce(func, wait, immediate) {
+export function debounce (func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
-  const later = function() {
+  const later = function () {
     // 据上一次触发时间间隔
     const last = +new Date() - timestamp
 
@@ -271,7 +281,7 @@ export function debounce(func, wait, immediate) {
     }
   }
 
-  return function(...args) {
+  return function (...args) {
     context = this
     timestamp = +new Date()
     const callNow = immediate && !timeout
@@ -293,7 +303,7 @@ export function debounce(func, wait, immediate) {
  * @param {Object} source
  * @returns {Object}
  */
-export function deepClone(source) {
+export function deepClone (source) {
   if (!source && typeof source !== 'object') {
     throw new Error('error arguments', 'deepClone')
   }
@@ -312,14 +322,14 @@ export function deepClone(source) {
  * @param {Array} arr
  * @returns {Array}
  */
-export function uniqueArr(arr) {
+export function uniqueArr (arr) {
   return Array.from(new Set(arr))
 }
 
 /**
  * @returns {string}
  */
-export function createUniqueString() {
+export function createUniqueString () {
   const timestamp = +new Date() + ''
   const randomNum = parseInt((1 + Math.random()) * 65536) + ''
   return (+(randomNum + timestamp)).toString(32)
@@ -327,29 +337,29 @@ export function createUniqueString() {
 
 /**
  * Check if an element has a class
- * @param {HTMLElement} elm
+ * @param {HTMLElement} ele
  * @param {string} cls
  * @returns {boolean}
  */
-export function hasClass(ele, cls) {
+export function hasClass (ele, cls) {
   return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
 }
 
 /**
  * Add class to element
- * @param {HTMLElement} elm
+ * @param {HTMLElement} ele
  * @param {string} cls
  */
-export function addClass(ele, cls) {
+export function addClass (ele, cls) {
   if (!hasClass(ele, cls)) ele.className += ' ' + cls
 }
 
 /**
  * Remove class from element
- * @param {HTMLElement} elm
+ * @param {HTMLElement} ele
  * @param {string} cls
  */
-export function removeClass(ele, cls) {
+export function removeClass (ele, cls) {
   if (hasClass(ele, cls)) {
     const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
     ele.className = ele.className.replace(reg, ' ')
@@ -362,22 +372,22 @@ export function removeClass(ele, cls) {
  * @param {*} id
  * @param {*} pid
  */
-export function treeDataTranslate(data, id = 'id', pid = 'parentId') {
-  var res = []
-  var temp = {}
-  for (var i = 0; i < data.length; i++) {
+export function treeDataTranslate (data, id = 'id', pid = 'parentId') {
+  const res = []
+  const temp = {}
+  for (let i = 0; i < data.length; i++) {
     temp[data[i][id]] = data[i]
   }
-  for (var k = 0; k < data.length; k++) {
+  for (let k = 0; k < data.length; k++) {
     if (temp[data[k][pid]] && data[k][id] !== data[k][pid]) {
-      if (!temp[data[k][pid]]['children']) {
-        temp[data[k][pid]]['children'] = []
+      if (!temp[data[k][pid]].children) {
+        temp[data[k][pid]].children = []
       }
-      if (!temp[data[k][pid]]['_level']) {
-        temp[data[k][pid]]['_level'] = 1
+      if (!temp[data[k][pid]]._level) {
+        temp[data[k][pid]]._level = 1
       }
-      data[k]['_level'] = temp[data[k][pid]]._level + 1
-      temp[data[k][pid]]['children'].push(data[k])
+      data[k]._level = temp[data[k][pid]]._level + 1
+      temp[data[k][pid]].children.push(data[k])
     } else {
       res.push(data[k])
     }
@@ -388,7 +398,7 @@ export function treeDataTranslate(data, id = 'id', pid = 'parentId') {
 /**
  * 获取uuid
  */
-export function getUUID() {
+export function getUUID () {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
     return (c === 'x' ? (Math.random() * 16 | 0) : ('r&0x3' | '0x8')).toString(16)
   })
@@ -398,9 +408,9 @@ export function getUUID() {
  * 将数组中的parentId列表取出，倒序排列
  * @param {*} data
  * @param {*} id
- * @param {*} pid
+ * @param {*} val
  */
-export function idList(data, val, id = 'id', children = 'children') {
+export function idList (data, val, id = 'id') {
   const res = []
   idListFromTree(data, val, res, id)
   return res
@@ -408,10 +418,14 @@ export function idList(data, val, id = 'id', children = 'children') {
 
 /**
  * @param {*} data
+ * @param {*} val
  * @param {*} id
- * @param {*} pid
+ * @param {*} res
+ * @param {*} children
+ * @param {*} name
  */
-function idListFromTree(data, val, res = [], id = 'id', children = 'children', name = 'name') {
+// eslint-disable-next-line max-params
+function idListFromTree (data, val, res = [], id = 'id', children = 'children', name = 'name') {
   for (let i = 0; i < data.length; i++) {
     const element = data[i]
     if (element[children]) {
@@ -428,7 +442,7 @@ function idListFromTree(data, val, res = [], id = 'id', children = 'children', n
 }
 
 // 计算每个sku后面有多少项
-export function getLevels(tree) {
+export function getLevels (tree) {
   const level = []
   for (let i = tree.length - 1; i >= 0; i--) {
     if (tree[i + 1] && tree[i + 1].leaf) {
@@ -446,8 +460,8 @@ export function getLevels(tree) {
  * @param  {Array}  stocks [description]
  * @return {[type]}        [description]
  */
-export function flatten(tree, stocks = [], options) {
-  const { optionValue = 'id', optionText = 'text', extraData = {}} = options || {}
+export function flatten (tree, stocks = [], options) {
+  const { optionValue = 'id', optionText = 'text', extraData = {} } = options || {}
   const result = []
   let skuLen = 0
   const stockMap = {} // 记录已存在的stock的数据
@@ -493,23 +507,106 @@ export function flatten(tree, stocks = [], options) {
 }
 
 /**
-   * 清除详情富文本自带样式
-   */
-export function formatHtml(content) {
-  content = content.replace(/\<img/gi, '<img style="width:100% !important;height:auto !important;margin:0;display:flex;" ')
-  content = content.replace(/style="/gi, 'style="max-width:100% !important;table-layout:fixed;word-wrap:break-word;word-break;break-all;')
+ * 判断富文本是否为全空格
+ * @param {String} str
+ * @returns
+ */
+export function isHtmlNull (str) {
+  const html = str.replace(/<(?!img).*?>/g, '').replace(/&nbsp;/gi, '').replace(/(\n)/g, '')
+  if (html === '') return true
+  const regu = '^[ ]+$'
+  const re = new RegExp(regu)
+  return re.test(html)
+}
+
+/**
+ * 清除详情富文本自带样式
+ */
+export function formatHtml (content) {
+  content = content.replace(/<img/gi, '<img style="width:100% !important;height:auto !important;margin:0;display:flex;" ')
+  content = content.replace(/style="/gi, 'style="max-width:100% !important;table-layout:fixed;word-wrap:break-word;word-break;break-word;')
   // content = content.replace(/\<table/gi, '<table style="table-layout:fixed;word-wrap:break-word;word-break;break-all;" ');
   // content = content.replace(/\<td/gi, '<td  cellspacing="0" cellpadding="0" border="0" style="display:block;vertical-align:top;margin: 0px; padding: 0px; border: 0px;outline-width:0px;" ');
   content = content.replace(/width=/gi, 'sss=')
   content = content.replace(/height=/gi, 'sss=')
-  content = content.replace(/ \/\>/gi, ' style="max-width:100% !important;height:auto !important;margin:0;display:block;" \/\>')
+  content = content.replace(/class=/gi, 'sss=')
+  content = content.replace(/ \/\\>/gi, ' style="max-width:100% !important;height:auto !important;margin:0;display:block;" \\/\\>')
   return content
 }
 
+export function formatPrice (price, type = 0) {
+  if (!price) {
+    return 0
+  }
+  Big.DP = 2
+  if (type === 0) {
+    return +new Big(price).times(100).valueOf()
+  }
+  return +new Big(price).div(100).valueOf()
+}
+
 /**
-   * 手机号正则校验
-   */
-export function checkPhoneNumber(phoneNumber) {
-  var regexp = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/
-  return regexp.test(phoneNumber)
+ * reactive数组响应式赋值
+ * @param arr
+ * @param data
+ */
+export function handleArr (arr, data) {
+  arr.length = 0
+  arr.push(...data)
+}
+/**
+ * 将数字转换为万，千万、亿等
+ * @param value 数字值
+ */
+export function bigNumberTransform (value) {
+  const newValue = ['', '', '']
+  let fr = 1000
+  let num = 3
+  let text1 = ''
+  let fm = 1
+  while (value / fr >= 1) {
+    fr *= 10
+    num += 1
+    // console.log('数字', value / fr, 'num:', num)
+  }
+  if (num <= 4) { // 千
+    newValue[0] = parseInt(value / 1000) + ''
+    newValue[1] = 'k'
+  } else if (num <= 8) { // 万
+    text1 = parseInt(num - 4) / 3 > 1 ? 'kw' : 'w'
+    // tslint:disable-next-line:no-shadowed-variable
+    fm = text1 === 'w' ? 10000 : 10000000
+    if (value % fm === 0) {
+      newValue[0] = parseInt(value / fm) + ''
+    } else {
+      newValue[0] = parseFloat(value / fm).toFixed(2) + ''
+    }
+    newValue[1] = text1
+  } else if (num <= 16) { // 亿
+    text1 = (num - 8) / 3 > 1 ? '千亿' : '亿'
+    text1 = (num - 8) / 4 > 1 ? '万亿' : text1
+    text1 = (num - 8) / 7 > 1 ? '千万亿' : text1
+    // tslint:disable-next-line:no-shadowed-variable
+    fm = 1
+    if (text1 === '亿') {
+      fm = 100000000
+    } else if (text1 === '千亿') {
+      fm = 100000000000
+    } else if (text1 === '万亿') {
+      fm = 1000000000000
+    } else if (text1 === '千万亿') {
+      fm = 1000000000000000
+    }
+    if (value % fm === 0) {
+      newValue[0] = parseInt(value / fm) + ''
+    } else {
+      newValue[0] = parseFloat(value / fm).toFixed(2) + ''
+    }
+    newValue[1] = text1
+  }
+  if (value < 1000) {
+    newValue[0] = value + ''
+    newValue[1] = ''
+  }
+  return newValue.join('')
 }

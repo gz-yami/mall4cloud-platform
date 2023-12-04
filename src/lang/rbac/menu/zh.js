@@ -15,5 +15,8 @@ export default {
   breadcrumb: '如果设置为false，则不会在breadcrumb面包屑中显示(默认 true)',
   affix: '若果设置为true，它则会固定在tags-view中(默认 false)',
   activeMenu: '当路由设置了该属性，则会高亮相对应的侧边栏。',
-  seq: '排序，越小越靠前'
+  seq: '排序，越小越靠前',
+  platformMenu: '平台端菜单',
+  supplierMenu: '供应商端菜单',
+  shopMenu: '商家端菜单'
 }

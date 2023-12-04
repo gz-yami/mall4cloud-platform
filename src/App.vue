@@ -1,20 +1,13 @@
-<template>
-  <div id="app">
-    <router-view />
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'App'
-}
+<script setup>
+import zh from 'element-plus/lib/locale/lang/zh-cn'
+const language = zh
 </script>
 
-<style lang="scss">
-#app {
-  .el-input--mini .el-input__inner {
-    height: 31px !important;
-    line-height: 31px !important;
-  }
-}
-</style>
+<template>
+  <el-config-provider
+    :locale="language"
+    namespace="el"
+  >
+    <router-view />
+  </el-config-provider>
+</template>

@@ -1,21 +1,21 @@
 import request from '@/utils/request'
 
-export function ossInfo(fileNum) {
+export function ossInfo (fileNum) {
   return request({
     url: '/mall4cloud_biz/oss/info',
     method: 'get',
-    params: { fileNum: fileNum }
+    params: { fileNum }
   })
 }
 
-export function pageFileGroup() {
+export function pageFileGroup () {
   return request({
     url: '/mall4cloud_biz/m/attach_file_group/list',
     method: 'get'
   })
 }
 
-export function getFileGroup(param) {
+export function getFileGroup (param) {
   return request({
     url: '/mall4cloud_biz/m/attach_file_group',
     method: 'get',
@@ -23,7 +23,7 @@ export function getFileGroup(param) {
   })
 }
 
-export function saveFileGroup(data) {
+export function saveFileGroup (data) {
   return request({
     url: '/mall4cloud_biz/m/attach_file_group',
     method: 'post',
@@ -31,7 +31,7 @@ export function saveFileGroup(data) {
   })
 }
 
-export function updateFileGroup(data) {
+export function updateFileGroup (data) {
   return request({
     url: '/mall4cloud_biz/m/attach_file_group',
     method: 'put',
@@ -39,7 +39,7 @@ export function updateFileGroup(data) {
   })
 }
 
-export function deleteFileGroup(param) {
+export function deleteFileGroup (param) {
   return request({
     url: '/mall4cloud_biz/m/attach_file_group',
     method: 'delete',
@@ -52,12 +52,12 @@ export function deleteFileGroup(param) {
  * @param url 请求的url
  * @param data 图片文件
  */
-export function minIoImgUpdate(url, data) {
+export function minIoImgUpdate (url, data) {
   return request({
     headers: {
       'Content-Type': data.type
     },
-    url: url,
+    url,
     method: 'put',
     data
   })
@@ -69,12 +69,12 @@ export function minIoImgUpdate(url, data) {
  * @param url 请求的url
  * @param data 图片文件+请求的参数
  */
-export function aliImgUpdate(url, data) {
+export function aliImgUpdate (url, data) {
   return request({
     headers: {
       'Content-Type': data.type
     },
-    url: url,
+    url,
     method: 'post',
     data
   })

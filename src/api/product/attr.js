@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_product/admin/attr/page',
     method: 'get',
@@ -8,7 +8,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(attrId) {
+export function get (attrId) {
   return request({
     url: '/mall4cloud_product/admin/attr',
     method: 'get',
@@ -18,7 +18,7 @@ export function get(attrId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_product/admin/attr',
     method: 'post',
@@ -26,7 +26,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_product/admin/attr',
     method: 'put',
@@ -34,7 +34,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(attrId) {
+export function deleteById (attrId) {
   return request({
     url: '/mall4cloud_product/admin/attr',
     method: 'delete',

@@ -1,13 +1,13 @@
 import request from '@/utils/request'
 
-export function list() {
+export function list () {
   return request({
     url: '/mall4cloud_delivery/p/delivery_company/list',
     method: 'get'
   })
 }
 
-export function get(deliveryCompanyId) {
+export function get (deliveryCompanyId) {
   return request({
     url: '/mall4cloud_delivery/p/delivery_company',
     method: 'get',
@@ -17,7 +17,7 @@ export function get(deliveryCompanyId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_delivery/p/delivery_company',
     method: 'post',
@@ -25,7 +25,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_delivery/p/delivery_company',
     method: 'put',
@@ -33,7 +33,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(deliveryCompanyId) {
+export function deleteById (deliveryCompanyId) {
   return request({
     url: '/mall4cloud_delivery/p/delivery_company',
     method: 'delete',

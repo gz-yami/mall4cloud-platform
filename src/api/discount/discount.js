@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_discount/m/discount/page',
     method: 'get',
@@ -8,7 +8,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(discountId) {
+export function get (discountId) {
   return request({
     url: `/mall4cloud_discount/m/discount/info/${discountId}`,
     method: 'get',
@@ -17,7 +17,7 @@ export function get(discountId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_discount/m/discount',
     method: 'post',
@@ -25,7 +25,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_discount/m/discount',
     method: 'put',
@@ -33,7 +33,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(discountId) {
+export function deleteById (discountId) {
   return request({
     url: `/mall4cloud_discount/m/discount/${discountId}`,
     method: 'delete',

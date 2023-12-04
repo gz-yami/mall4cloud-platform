@@ -1,96 +1,79 @@
+<!--
+ Copyright (c) 2018-2999 广州市蓝海创新科技有限公司 All rights reserved.
+
+ https://www.mall4j.com/
+
+ 未经允许，不可做商业用途！
+
+ 版权所有，侵权必究！
+-->
 <template>
-  <div :class="classObj" class="app-wrapper">
-    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
-    <div :class="{hasTagsView:needTagsView}" class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
-        <tags-view v-if="needTagsView" />
-      </div>
-      <app-main />
+  <div
+    :class="classObj"
+    class="Mall4j app-wrapper"
+  >
+    <div :class="{'fixed-header':fixedHeader}">
+      <Navbar v-if="isDecorate" />
+    </div>
+    <Sidebar
+      v-if="isDecorate"
+      :class="{'sidebar-container':isDecorate}"
+    />
+    <div
+      :class="{'main-container':isDecorate}"
+    >
+      <AppMain />
     </div>
   </div>
 </template>
 
-<script>
-import { AppMain, Navbar, Sidebar, TagsView } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
-import { mapState } from 'vuex'
-
-export default {
-  name: 'Layout',
-  components: {
-    AppMain,
-    Navbar,
-    Sidebar,
-    TagsView
-  },
-  mixins: [ResizeMixin],
-  computed: {
-    ...mapState({
-      sidebar: state => state.app.sidebar,
-      device: state => state.app.device,
-      showSettings: state => state.settings.showSettings,
-      needTagsView: state => state.settings.tagsView,
-      fixedHeader: state => state.settings.fixedHeader
-    }),
-    classObj() {
-      return {
-        hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened,
-        withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile'
-      }
-    }
-  },
-  methods: {
-    handleClickOutside() {
-      this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
-    }
+<script setup>
+import AppMain from './components/AppMain.vue'
+import Navbar from './components/Navbar.vue'
+import Sidebar from './components/sidebar/index.vue'
+const appStore = useAppStore()
+const fixedHeader = ref(true)
+const classObj = computed(() => {
+  return {
+    withoutAnimation: appStore.sidebar.withoutAnimation,
+    hideSidebar: !appStore.sidebar.opened
   }
-}
+})
+const router = useRouter()
+const isDecorate = computed(() => {
+  return !(/^\/(platform-decorate\/decorate-create-edit|platform-feature\/feature-create-edit)/.test(router.currentRoute.value.path))
+})
 </script>
 
 <style lang="scss" scoped>
-  @import "~@/styles/mixin.scss";
-  @import "~@/styles/variables.scss";
+@import "@/styles/mixin.scss";
+@import "@/styles/variables.scss";
 
-  .app-wrapper {
-    @include clearfix;
-    position: relative;
-    height: 100%;
-    width: 100%;
+.app-wrapper {
+  //@include clearfix;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #f9f9f9;
 
-    &.mobile.openSidebar {
-      position: fixed;
-      top: 0;
-    }
-  }
-
-  .drawer-bg {
-    background: #000;
-    opacity: 0.3;
-    width: 100%;
-    top: 0;
-    height: 100%;
-    position: absolute;
-    z-index: 999;
-  }
-
-  .fixed-header {
+  &.mobile.openSidebar {
     position: fixed;
     top: 0;
-    right: 0;
-    z-index: 9;
-    width: calc(100% - #{$sideBarWidth});
-    transition: width 0.28s;
   }
+}
 
-  .hideSidebar .fixed-header {
-    width: calc(100% - 54px)
-  }
+.drawer-bg {
+  background: #000;
+  opacity: 0.3;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  position: absolute;
+  z-index: 999;
+}
 
-  .mobile .fixed-header {
-    width: 100%;
-  }
+.mobile .fixed-header {
+  z-index: 999;
+  width: 100%;
+}
 </style>

@@ -9,13 +9,16 @@ export default {
   icon: 'icon',
   imgUrl: 'img url',
   level: 'level',
+  deductionRate: 'Deduction Rate',
   seq: 'seq',
   normal: 'normal',
   offline: 'Off shelf',
-  disable: 'disable',
   recommImgSize: 'Carousel pictures',
   categoryParent: 'Category parent',
+  categoryParentTip: 'After you create a classification, the parent classification does not support modification',
+  nameNotEmpty: 'The name cannot have only spaces',
   categoryNoNull: 'Category name cannot be empty',
   imageNoNull: 'Image cannot be empty',
+  deductionRateNoNull: 'Deduction rate cannot be empty',
   enterCateName: 'Please enter the category name'
 }

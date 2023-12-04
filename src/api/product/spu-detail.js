@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function page(pageParam) {
+export function page (pageParam) {
   return request({
     url: '/mall4cloud_product/m/spu_detail/page',
     method: 'get',
@@ -8,7 +8,7 @@ export function page(pageParam) {
   })
 }
 
-export function get(spuId) {
+export function get (spuId) {
   return request({
     url: '/mall4cloud_product/m/spu_detail',
     method: 'get',
@@ -18,7 +18,7 @@ export function get(spuId) {
   })
 }
 
-export function save(data) {
+export function save (data) {
   return request({
     url: '/mall4cloud_product/m/spu_detail',
     method: 'post',
@@ -26,7 +26,7 @@ export function save(data) {
   })
 }
 
-export function update(data) {
+export function update (data) {
   return request({
     url: '/mall4cloud_product/m/spu_detail',
     method: 'put',
@@ -34,7 +34,7 @@ export function update(data) {
   })
 }
 
-export function deleteById(spuId) {
+export function deleteById (spuId) {
   return request({
     url: '/mall4cloud_product/m/spu_detail',
     method: 'delete',
