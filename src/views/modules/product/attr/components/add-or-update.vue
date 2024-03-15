@@ -152,6 +152,7 @@
 
 <script setup>
 import * as api from '@/api/product/attr'
+import { ElMessage } from 'element-plus'
 import { reactive } from 'vue'
 
 const emit = defineEmits(['refreshDataList'])
@@ -284,7 +285,10 @@ const deleteCategoryItemOfSelected = (index) => {
  */
 const addAttrValue = (attrVal) => {
   if (!attrVal) {
-    return
+    return ElMessage({
+      message: '添加属性值为空',
+      type: 'warning'
+    })
   }
   Data.dataForm.attrValues.forEach((el, idx) => {
     if (el.value === attrVal) {
